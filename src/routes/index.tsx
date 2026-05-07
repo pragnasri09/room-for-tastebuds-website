@@ -108,7 +108,7 @@ useEffect(() => {
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
-          {menu.slice(0, 3).map((item) => (
+          {menu.map((item) => (
             <article key={item.id} className="group overflow-hidden rounded-2xl bg-card shadow-card transition-all hover:shadow-soft">
               <div className="aspect-[4/5] overflow-hidden bg-muted">
                 <img

@@ -16,17 +16,46 @@ export const Route = createFileRoute("/desserts")({
 
 function DessertsPage() {
   type MenuItem = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-};
+    id: string;
+    name: string;
+    price: number;
+    description: string;
+    image: string;
+  };
 
-const [menu, setMenu] = useState<MenuItem[]>([]);
+  const [menu, setMenu] = useState<MenuItem[]>([]);
+
+const defaultMenu = [
+  {
+    id: "1",
+    name: "Sleeping Teddy Dessert",
+    price: 1600,
+    description: "A dreamy fondant teddy resting on pillowy vanilla sponge",
+    image: "https://res.cloudinary.com/dbiydzqzr/image/upload/v1778081500/msj8ucpzewac2iiszsu2.jpg"
+  },
+  {
+    id: "2",
+    name: "Cartoon Cheese Cake",
+    price: 700,
+    description: "Silky baked cheesecake topped with a cartoon character",
+    image: "https://res.cloudinary.com/dbiydzqzr/image/upload/v1778081488/vzfim3l0bvf8ycozfobj.jpg"
+  },
+  {
+    id: "3",
+    name: "Customized Cakes",
+    price: 800,
+    description: "Bespoke creations designed around your story",
+    image: "https://res.cloudinary.com/dbiydzqzr/image/upload/v1778081473/b2tvwpzw7hwurviyhrva.jpg"
+  }
+];
   useEffect(() => {
   const fetchMenu = async () => {
     const querySnapshot = await getDocs(collection(db, "menu"));
+
+    if (querySnapshot.empty) {
+  setMenu(defaultMenu);
+  return;
+}
 
     const data = querySnapshot.docs.map((docSnap) => {
       const d = docSnap.data();
@@ -45,6 +74,9 @@ const [menu, setMenu] = useState<MenuItem[]>([]);
 
   fetchMenu();
 }, []);
+if (menu.length === 0) {
+    return <p className="text-center py-20">Loading desserts...</p>;
+  }
   return (
     <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
       <header className="mb-14 text-center">

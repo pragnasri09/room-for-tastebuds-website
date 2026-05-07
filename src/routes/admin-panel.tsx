@@ -82,7 +82,7 @@ function AdminPanelPage() {
 };
 
   const handleSave = () => {
-  setSavedMsg("Saved to cloud ✅");
+  setSavedMsg("Menu saved");
   setTimeout(() => setSavedMsg(""), 2000);
 };
 
