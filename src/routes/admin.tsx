@@ -17,8 +17,13 @@ function AdminLoginPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (isLoggedIn()) navigate({ to: "/admin-panel", replace: true });
-  }, [navigate]);
+  if (isLoggedIn()) {
+    navigate({
+      to: "/admin-panel",
+      replace: true,
+    });
+  }
+}, []);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -68,10 +73,6 @@ function AdminLoginPage() {
             Sign in
           </button>
         </form>
-
-        <p className="mt-5 text-center text-xs text-muted-foreground">
-          Demo credentials: <span className="font-mono">admin</span> / <span className="font-mono">tastebuds2024</span>
-        </p>
         <p className="mt-4 text-center">
           <Link to="/" className="text-xs text-muted-foreground underline-offset-4 hover:underline">
             Back to home
